@@ -1,0 +1,276 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+
+    body {
+        font-family: 'Belanosima', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding:0;
+    }
+
+    .container {
+        display: flex;
+    }
+
+    .form-container {
+        width: 700px;
+        padding: 30px 30px 50px 30px;
+        margin: 10px 30px 50px 30px;
+        border-radius: 50px;
+        text-align: center;
+        border-color: #e6e507;
+        background-color: transparent;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-container {
+        flex:1;
+        margin-left: 80px;
+        bottom:100px;
+        float:left;
+    }
+
+    .image {
+        top:60px;
+        width: 100%;
+        height: auto;
+        margin-right: 100px;
+        margin-top:80px;
+    }
+    .image img {
+        width:500px;
+        height:auto;
+        }
+
+    .text {
+        font-size: 35px;
+        font-weight: 600;
+        color: black;
+        margin-bottom: 50px;
+    }
+
+    .mb-2 {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .mb-2 label {
+        flex: 1;
+        text-align: right;
+        margin-right: 50px;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .mb-2 input[type="text"],
+    .mb-2 input[type="number"],
+    .mb-2 input[type="password"],
+    .mb-2 input[type="email"] {
+        flex: 2;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        background-color: transparent;
+        color: black;
+        font-size: 16px;
+        border-radius: 30px;
+    }
+
+    input[type="submit"] {
+        font-size: 19px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+
+    .creataccount a {
+        text-decoration: none;
+        color: black;
+    }
+    .password-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .toggle-password {
+        cursor: pointer;
+        margin-left: 10px; 
+    }
+    @media (max-width: 500px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .form-container {
+        width: 80%;
+        margin: 10px auto 50px auto;
+        padding: 20px;
+    }
+
+    .image-container {
+        margin: 0;
+        text-align: center;
+    }
+
+    .image {
+        margin: 20px 0;
+    }
+
+    .mb-2 label {
+        text-align: left;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .mb-2 input[type="text"],
+    .mb-2 input[type="number"],
+    .mb-2 input[type="password"],
+    .mb-2 input[type="email"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+        margin-top: 10px;
+    }
+}
+@media (max-width: 500px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .form-container {
+        width: 80%;
+        margin: 10px auto 50px auto;
+        padding: 20px;
+    }
+
+    .image-container {
+        margin: 0;
+        text-align: center;
+    }
+
+    .image {
+        margin: 20px 0;
+    }
+
+    .mb-2 label {
+        text-align: left;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .mb-2 input[type="text"],
+    .mb-2 input[type="number"],
+    .mb-2 input[type="password"],
+    .mb-2 input[type="email"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+        margin-top: 10px;
+    }
+  
+}
+.signup{
+    margin-left:10px;
+}
+</style>
+ <div class="image"><img src="./assets/signup.png" alt=""></div>
+    <div class="form-container">
+        <div class="d-flex justify-content-center">
+            <form action="signup.php" method="POST">
+                <div class="text">Sign Up</div>
+                            <?php 
+                        if(array_key_exists("msg",$_GET)){
+                    ?>
+                        <div class="alert alert-danger">
+                            <?= $_GET['msg']; ?>
+                        </div>
+                    <?php } ?>
+                <div class="mb-2">
+                    <label for="first_name">User Name </label>
+                    <input type="text" id="first_name" placeholder="Your user name " name="username">
+                </div>
+                <div class="mb-2">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" placeholder="Your first name" name="first_name">
+                </div>
+                <div class="mb-2">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" placeholder="Your last name" name="last_name">
+                </div>
+             
+                <div class="mb-2">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" placeholder="Email" name="email">
+                </div>
+                <div class="mb-2">
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Password" name="password">
+                    <span class="toggle-password" onclick="togglePasswordVisibility('password')">
+                        <i class="bi bi-eye"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="mb-2">
+                <label for="confirm_password">Confirm Password</label>
+                <div class="password-container">
+                    <input type="password" id="confirm_password" placeholder="Confirm Password" name="confirm_password">
+                        <span class="toggle-password" onclick="togglePasswordVisibility('confirm_password')">
+                        <i class="bi bi-eye"></i>
+                    </span>
+                </div>
+            </div>
+
+                <br>
+                <button type="submit" name="signup" value="signup" class="btn btn-primary btn-block w-100 rounded-pill"><i class="bi bi-box-arrow-in-right"></i><span  class="signup">Sign Up</span></button>
+                <br>
+                <br>
+                <div class="creataccount">
+                    <a href="login.php">You Already Have an Account!</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="./assets/sweetalert.js"></script>
+ <?php
+  if (isset($_SESSION['status'])&&$_SESSION['status']!=""){
+    ?>
+ 
+    <script>
+    Swal.fire({
+        title: "<?php echo  $_SESSION['status'];?> ",
+        //text: "You clicked the button!",
+        icon: "<?php echo $_SESSION['status_code'];?>"
+    });
+    </script>
+<?php
+    unset($_SESSION['status']);
+    }
+?>
+ <script>
+        function togglePasswordVisibility(inputId) {
+            var passwordInput = document.getElementById(inputId);
+            var toggleButton = document.querySelector("[onclick*='" + inputId + "'] i");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleButton.classList.remove("bi-eye");
+                toggleButton.classList.add("bi-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                toggleButton.classList.remove("bi-eye-slash");
+                toggleButton.classList.add("bi-eye");
+            }
+        }
+    </script>

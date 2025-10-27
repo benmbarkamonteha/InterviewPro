@@ -1,0 +1,139 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+
+body{
+    background-image: url('./assets/illustration.png');
+    background-repeat: no-repeat;
+    background-position:  top 10px right 2px; 
+    font-family: 'Belanosima', sans-serif;
+}
+.logincontainer {
+    width: 600px;
+    height:400px;
+    float: center;
+    margin-top: 80px;
+    margin-left:250px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: transparent;
+}
+.title {
+    text-align:center;
+
+}
+.links{
+    padding-bottom:50px ;
+}
+.links a {
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+    padding: 5px 50px;
+    color:black;
+    font-weight:10px;
+}
+.password-container {
+        display: flex;
+        align-items: center;
+      
+    }
+
+    .toggle-password {
+        cursor: pointer;
+        margin-left: 10px; 
+    }
+.logincontainer input{
+    width:500px;
+    width: 100%;
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        background-color: transparent;
+        color: black;
+        font-size: 16px;
+        border-radius: 30px;
+
+}
+@media (max-width: 500px) {
+    .logincontainer {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .links {
+        padding-bottom: 20px;
+    }
+
+    .logincontainer input {
+        width: 100%;
+    }
+}
+.login{
+    margin-left:10px;
+
+}
+</style>
+<div class="logincontainer px-3 py-3">
+<form method="post" action="loginadmin.php">
+    <?php
+        if (isset($_SESSION['status'])&&$_SESSION['status']!=""){
+            ?>
+            <div class="alert alert-success" role="alert">
+                <strong>Hey!</strong> <?php echo $_SESSION['status'];?>
+            </div>
+            <?php
+            unset ($_SESSION['status']);
+        }
+
+    ?>
+
+<h2 class="title">Log in </h2>
+<br>
+<?php 
+    if(array_key_exists("msg",$_GET)){
+?>
+    <div class="alert alert-danger">
+        <?= $_GET['msg']; ?>
+    </div>
+<?php } ?>
+<div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email"  id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+</div>
+<div class="mb-3">
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Password"  name="password">
+                    <span class="toggle-password" onclick="togglePasswordVisibility('password')">
+                        <i class="bi bi-eye"></i>
+                    </span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" name="submit" value="submit"><i class="bi bi-box-arrow-in-right"></i><span class="login">Login</span></button>
+</form>
+<hr>
+<div class="links">
+<a href="#">Forgot Password ?</a>
+<a href="signupadmin.php">Create an Account !</a>
+</div>
+</div>
+
+ <script src="./assets/sweetalert.js"></script>
+<script>
+        function togglePasswordVisibility(inputId) {
+            var passwordInput = document.getElementById(inputId);
+            var toggleButton = document.querySelector("[onclick*='" + inputId + "'] i");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                toggleButton.classList.remove("bi-eye");
+                toggleButton.classList.add("bi-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                toggleButton.classList.remove("bi-eye-slash");
+                toggleButton.classList.add("bi-eye");
+            }
+        }
+    </script>
+

@@ -1,0 +1,44 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+
+body {
+  font-family: 'Belanosima', sans-serif;
+}
+
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body{
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.4;
+  background: #F9F9F9;
+  overflow-x: hidden;
+}
+</style>
+<div class="details px-5 py-5">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <strong>Description:</strong> <br><br>
+            <?php echo ($jobdetail['description']); ?>
+        </li>
+        <li class="list-group-item">
+            <strong>Level of study:</strong> <br><br>
+            <?php echo($jobdetail['level']); ?>
+        </li>
+            <li class="list-group-item">
+            <strong>Job Requirements:</strong> <br><br>
+            <?php echo ($jobdetail['jobrequirement']); ?>
+        </li>
+        <li class="list-group-item">
+            <strong>Location:</strong> <br><br>
+            <?php echo ($jobdetail['location']); ?>
+        </li>
+        <li class="list-group-item">
+        <a class="btn btn-primary" style ="float:right; margin-top:10px;width:100px;" href="applyment.php?id=<?=$_SESSION['jobId'];?>">Apply</a>
+        </li>
+    </ul>
+</div>

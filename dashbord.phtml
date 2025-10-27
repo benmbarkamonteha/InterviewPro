@@ -1,0 +1,60 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+
+body {
+  font-family: 'Belanosima', sans-serif;
+}
+  img {
+    width: 100px;
+    height: 200px;
+  }
+ .Container{
+  margin-right:200px;
+  margin-left:200px;
+  margin-top:50px;
+  width:100%;
+ }
+  .container {
+    display: flex;
+    float:center;
+    margin-top: 20px;
+    justify-content: space-between;
+  }
+
+  .card {
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 0 0 45%;
+    margin-top: 20px;
+  }
+
+  .card img {
+    border-radius: 25px;
+  }
+
+  .card-title {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .title {
+    margin-top: 15px;
+    text-align: center;
+    margin-left: 70px;
+  }
+</style>
+
+<div class="Container" >
+  <h2 class='title'> Welcome <?php echo $_SESSION['username']; ?> to your Dashboard <span><i class="bi bi-heart-fill"></i></span></h2>
+  <div class="container px-5 py-5">
+    <div class="card">
+      <img src="./assets/job.jpg" class="card-img-top" alt="...">
+      <h5 class="card-title">Number of Jobs: <?= $jobCount; ?> </h5>
+    </div>
+
+    <div class="card">
+      <img src="./assets/candidates.jpg" class="card-img-top" alt="...">
+      <h5 class="card-title">Number of candidates: <?= $candidateCount; ?></h5>
+    </div>
+  </div>
+</div>

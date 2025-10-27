@@ -1,0 +1,124 @@
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+
+body {
+  font-family: 'Belanosima', sans-serif;
+}
+    .myform {
+        max-width: 600px;
+        margin-left: 250px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color:#F39C12;
+        font-size: 20px;
+    }
+
+input[type="tel"],
+input[type="text"],
+textarea,
+input[type="file"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    .bi {
+        margin-right: 5px;
+    }
+    .title{
+        font-size:bolder;
+        color:#1F618D ;
+        text-align: center;
+    }
+    
+</style>
+
+<div class="container px-4 py-4">
+    <div class="myform">
+        <h2 class="title"><i class="bi bi-person-workspace"></i><span>Apply for the Job</span></h2>
+        <br>
+        <form method="post" action="applyment.php" enctype="multipart/form-data" id="applyForm" onsubmit="return Validate()">
+        <?php 
+                        if(array_key_exists("msg",$_GET)){
+                    ?>
+                        <div class="alert alert-danger">
+                            <?= $_GET['msg']; ?>
+                        </div>
+                    <?php } ?>
+
+            <input type="hidden" name="job_id" value="<?php echo $_SESSION['jobId']; ?>">
+            <br>
+                <div class="form-group">
+                    <label for="experience"><i class="bi bi-card-text"></i><strong>Experience:</strong></label>
+                    <textarea name="experience" class="form-control" placeholder="Write Your Experience" required><?php echo ($candidateData['experience']); ?></textarea>
+                </div>
+
+            <div class="form-group">
+                <label for="state"><i class="bi bi-bar-chart"></i><strong>Level:</strong></label>
+                <select class="form-select" aria-label="Default select example" name="level">
+                    <option selected><?php echo htmlspecialchars($candidateData['level']); ?></option>
+                    <option value="BTS">BTS</option>
+                    <option value="DUT">DUT</option>
+                    <option value="Licence">Licence</option>
+                    <option value="Master">Master</option>
+                    <option value="Doctorat">Doctorat</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="level"><i class="bi bi-telephone-fill"></i><strong>Telephone Number:</strong></label>
+                <input type="text" name="telnum" id="telnum" class="form-control" value="<?php echo htmlspecialchars($candidateData['telephonenumber']); ?>" required>
+                <span id="telErrorMessage" style="color: red;"></span> 
+            </div>
+
+            <div class="form-group">
+                <label for="cv"><i class="bi bi-file-earmark-pdf"></i><strong>CV</strong></label>
+                <input type="file" class="form-control" name="fileCv" accept=".pdf" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" name="apply" class="btn btn-primary" ostyle="float:right; margin-top:10px;width:100px;padding-left" value="Apply">
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+       function Validate() {
+        var telInput = document.getElementById('telnum');
+        var telErrorMessage = document.getElementById('telErrorMessage');
+        var regex = /^\d+$/;
+
+        if (!regex.test(telInput.value)) {
+            telErrorMessage.innerText = "Please enter a valid telephone number.";
+            telInput.focus();
+            return false;
+        } else {
+            telErrorMessage.innerText = "";
+            return true;
+        }
+    }      
+   
+            
+</script>

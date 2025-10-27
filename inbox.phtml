@@ -1,0 +1,61 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+
+body {
+  font-family: 'Belanosima', sans-serif;}
+    .containerbox {
+        width: 700px;
+        
+        margin-left: 150px;
+        margin-bottom:100px;
+    }
+
+    .styled-table {
+        border-collapse: collapse;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #000;
+        border-radius: 50px;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: center;
+    }
+    .title{
+        text-align:center;
+        font-size: 25px;
+        
+    }
+</style>
+
+<div class="containerbox ">
+    <div class="title">The Email Box </div>
+    <br>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th scope="col">Full name</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Message</th>
+                <th scope="col">Date</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($boxs as $box) : ?>
+                <tr>
+                    <td><?php echo $box['fullname']; ?></td>
+                    <td><?php echo $box['subject']; ?></td>
+                    <td><?php echo $box['message']; ?></td>
+                    <td><?php echo $box['date']; ?></td>
+                    <td>
+                        <a href="email.php?id=<?= $box['fullname'] ?>&email=<?= $box['email']; ?>" role="button" class="btn btn-success"><i class="bi bi-envelope"></i> Send Email</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

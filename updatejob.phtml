@@ -1,0 +1,140 @@
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .addjobcontainer {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+          .cssbuttons-io-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .2em;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  padding: .5em 1.5em;
+  color: white;
+  background:linear-gradient(0deg, rgb(0, 0, 255), rgb(135, 206, 250));
+
+  border: none;
+  outline: none;
+  border-bottom: 3px solid rgb(0, 0, 255);
+  box-shadow: 0 .5em .5em -.4em rgb(0, 0, 0, .5);
+  letter-spacing: 0.08em;
+  border-radius: 20em;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.cssbuttons-io-button:hover {
+  filter: brightness(1.2);
+  color: rgb(0, 0, 0, .5);
+}
+
+.cssbuttons-io-button:active {
+  transition: 0s;
+  transform: rotate(-10deg);
+}
+.title{
+
+}
+    </style>
+
+<div class="addjobcontainer px-5 py-5">
+    <h2 class="title">Update Job</h2>
+    <form  method="POST"action="updatejob.php"> 
+    <?php 
+            if(array_key_exists("msg",$_GET)){
+          ?>
+            <div class="alert alert-danger">
+                 <?= $_GET['msg']; ?>
+            </div>
+          <?php } ?>
+          <input type="hidden" name="id" value="<?php echo $jobData['id'] ; ?>">
+      <div class="form-group">
+        <label for="jobName">Job Name:</label>
+        <input type="text" class="form-control" id="jobName" name="name" value="<?php echo $jobData['name']?>"required>
+      </div>
+
+      <div class="form-group">
+        <label for="jobDescription">Job Description:</label>
+        <textarea class="form-control" id="jobDescription" name="description" rows="5" required><?php echo $jobData['description']?></textarea>
+      </div>
+
+      <div class="form-group">
+      <label for="Levelofstudy"><i class="bi bi-bar-chart"></i> <strong>Level of study:</strong></label>
+                <select class="form-select" aria-label="Default select example" name="levelofstudy" >
+                <option selected><?php echo $jobData['level']?></option>
+                <option value="BTS">BTS</option>
+                <option value="DUT">DUT</option>
+                <option value="Licence">Licence</option>
+                <option value="Master">Master</option>
+                <option value="Doctorat">Doctorat</option>
+                </select>
+      </div>
+      <div class="form-group">
+        <label for="jobLocation">Job Requirements:</label>
+    <input type="text" class="form-control" id="jobrequirment" name="jobrequirment" value="<?php echo $jobData['jobrequirement']?>">
+      </div>
+      <div class="form-group">
+        <label for="jobLocation">Job Location:</label>
+        <input type="text" class="form-control" id="jobLocation" name="location" value="<?php echo $jobData['location']?>">
+      </div>
+      
+      
+      <div class="form-group">
+            <label for="birthdate"><i class="bi bi-calendar"></i> Creation Date</label>
+            <input type="date"  id ="date" name="date" class="form-control">
+        </div>
+        
+
+        <button  type="submit"  name="submit"class="cssbuttons-io-button" value="submit" onclick="validateDate()">
+  <svg height="25" width="25" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" fill="currentColor"></path></svg>
+  <span>Update Job</span>
+</button>    </form>
+  </div>
+  <script>
+        var currentDate = new Date().toISOString().split('T')[0];
+        document.getElementById('date').value = currentDate;
+</script>

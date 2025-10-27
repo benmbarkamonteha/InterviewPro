@@ -1,0 +1,102 @@
+<style>
+
+    .emailForm {
+        display: flex;
+        width: 100%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 50px auto;
+    }
+
+    .emailForm .form-content {
+        flex: 1;
+    }
+
+    .emailForm label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .emailForm input,
+    .emailForm textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        border-radius:10px;
+        border:1px solid black;
+    }
+
+    .emailForm button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .emailForm button:hover {
+        background-color: #45a049;
+    }
+
+    .error-message {
+        color: #f00;
+        margin-bottom: 16px;
+    }
+</style>
+
+<form class="emailForm" method='POST' action="emailsend.php" onsubmit="return showMessageAlert()">
+    <div class="form-content">
+        <label for="to"><i class="bi bi-person-circle"></i><span>To:</span></label>
+        <input type="email" id="to" name="to" value="<?php echo $email; ?>" required>
+
+        <label for="subject">Subject:</label>
+        <input type="text" name="subject" value="<?php echo ($state == 'accepted') ? 'Interview Invitation from InterviewPro' : 'Notification on Your Job Application'; ?>" required>
+
+        <label for="message"><i class="bi bi-fonts"></i><span>Message:</span></label>
+        <textarea id="message" name="message" rows="20" required><?php echo ($state == 'accepted') ? "
+            Dear $condidatename,
+
+            Following the study of your application, we are pleased to invite you to undergo physical interviews at our premises. I will send you an invitation as soon as I receive the managers' availability calendar.
+
+            We invite you to confirm your presence by simply replying to this email. We remain at your disposal for any questions you may encounter, and we wish you good success in this series of interviews. We look forward to seeing you.
+
+            Best regards,
+            The human resources department" : "
+            Dear $condidatename,
+
+            Thank you for your interest in the $jobname. We appreciate the time and effort you invested in the application process.
+
+            After careful consideration, we regret to inform you that we have chosen to move forward with other candidates who more closely align with the specific qualifications and requirements of the role. We genuinely appreciate your interest in joining our team, and we encourage you to apply for future opportunities that match your skills and experience.
+
+            We wish you the best in your job search and thank you again for considering our company.
+
+            Kind regards,
+            [Rayen Soft]"; ?></textarea>
+
+        <div class="error-message" id="error-message"></div>
+
+        <button type="submit" value="submit" name="submit" ><i class="bi bi-forward-fill"></i><span>Send</span></button>
+    </div>
+</form>
+<script>
+    function showMessageAlert() {
+       
+        Swal.fire({
+            icon: 'success',
+            title: 'Message sent successfully!',
+            showConfirmButton: false,
+            timer: 1500  
+        });
+
+ 
+        return true;
+    }
+</script>
+
+
+

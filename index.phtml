@@ -1,0 +1,75 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+
+body {
+  font-family: 'Belanosima', sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.4;
+  background: #F9F9F9;
+  overflow-x: hidden;
+}
+
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+
+    .title2{
+        padding-top:50px;
+        color:#3498DB;
+        font-size:25px;
+    }
+    .welcometitle{
+        padding-top:10px;
+        text-align:center;
+
+    }
+    .form-control me-2{
+        border-radius: 40px;
+    }
+    .jobtitle{
+        padding-left:15px;
+    }
+    .date{
+        padding-left:15px;
+
+    }
+
+   
+</style>
+<br><br>
+    <form class="d-flex" method="POST" action="search.php" >
+        <input class="form-control me-2" type="text" name="search" placeholder="Search for the job..." aria-label="Search">
+        <button class="btn btn-dark" name="submit" value="submit" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+      <br>
+      <?php 
+                        if(array_key_exists("msg",$_GET)){
+                    ?>
+                        <div class="alert alert-danger">
+                            <?= $_GET['msg']; ?>
+                        </div>
+                    <?php } ?>
+
+     <div class="container px-4 py-4">
+    <br>
+      <div class="title2"><i class="bi bi-briefcase-fill"></i><span class="jobtitle">Latest Job Offers :</span></div>
+    <br>
+    <?php foreach ($jobs as $job) : ?>
+        <div class="col-md-4">
+            <div class="card" style="width: 700px;margin-left:100px; float:center;margin-top:50px;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color:#1F618D;"><?php echo $job['name']; ?></h5>
+                    <br>
+                    <h6 class="card-subtitle mb-2 text-body-secondary"style="color:#000000;"><i class="bi bi-calendar"></i><span class="date"><?php echo $job['createdat']; ?></span></h6>
+                    <a class="btn btn-primary" style ="float:right; margin-top:10px;width:100px;"href="jobdetails.php?id=<?=$job['id']; ?>" role="button"><i class="bi bi-info-circle-fill"><span> </span></i>Details</a>
+
+                </div>
+            </div>
+    </div>
+    <?php endforeach; ?>
+
+

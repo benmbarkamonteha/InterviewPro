@@ -1,0 +1,295 @@
+<style>
+    *{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body{
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.4;
+  background: #F9F9F9;
+  overflow-x: hidden;
+}
+
+.contact-container{
+  width: 90%;
+  height: 100vh;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.contact-inner-container{
+  padding: 0px;
+  width: 96%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: lightsteelblue;
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+
+}
+
+.contact-info-container{
+  width: 50%;
+  text-align: left;
+  padding: 50px;
+  background: #3498DB;
+  border-radius: 50px;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+
+
+}
+
+.contact-form{
+  width: 50%;
+  background: lightsteelblue;
+  padding: 50px;
+  border-radius: 0px 4px 4px 0px;
+}
+
+.contact-heading{
+  font-family: inherit;
+  font-size: 4rem;
+  font-weight: 700 !important;
+  line-height: 4rem;
+  color: #F6F7A9;
+}
+
+.contact-description{
+  font-family: inherit;
+  font-weight: 700;
+  color: #F6F7A9;
+  line-height: 1.6rem;
+  text-align: justify;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.line{
+  width: 100%;
+  height: 8px;
+  border-radius: 8px;
+  background: #F6F7A9;
+  margin: 24px 0px;
+}
+
+.contact-details{
+  padding-top: 24px;
+}
+
+.contact-details h3{
+  font-weight: 600;
+  color: #F6F7A9;
+}
+
+.contact-details p{
+  color: whitesmoke;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.social-link-container{
+  display: flex;
+  margin-top: 30px;
+}
+
+.social-link-container .fa{
+  margin-right: 20px;
+  cursor: pointer;
+  color: #F6F7A9;
+  transition: all 0.2s;
+}
+
+.social-link-container .fa:hover, .submit-btn:hover{
+  transform: translateY(-4px);
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group{
+  width: 100%;
+  text-align: left;
+  margin-top: 2px;
+}
+
+.form-group:not(:last-child){
+  margin-bottom: 1rem;
+}
+
+.input-field{
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  padding: 18px;
+  background: #F2F2F2;
+}
+
+.form-input{
+  height: auto;
+  border-radius: 40px;
+
+}
+
+.form-group textarea{
+  height: 200px;
+}
+
+.submit-btn{
+  padding: 1rem 2.4rem;
+  font-weight: 700;
+  text-align: center;
+  color: #F6F7A9;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: linear-gradient(#3498DB, #AED6F1);
+}
+@media  (max-width: 500px) {
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .contact-inner-container,
+  .contact-info-container,
+  .contact-form {
+    width: 100%;
+  }
+
+  .contact-info-container,
+  .contact-form {
+    border-radius: 0;
+    padding: 20px; 
+  }
+  .contact-heading{
+    font-size:50px;
+  }
+}
+
+</style>
+
+<div class="contact-container px-4 py-4">
+  <div class="contact-inner-container">
+
+    <div class="contact-info-container">
+      <h1 class="contact-heading">Say Hello!</h1>
+      <p class="contact-description">
+        We're open for any suggestion or any question .
+      </p>
+      <div class="line"></div>
+
+      <div class="contact-details">
+        <h3><i class="fa fa-map-maker"></i> Address</h3>
+        <p>Adresse: Avenue Habib Bourguiba, Zaghouan-Hammam Zriba 1152</p>
+      </div>
+      <hr />
+
+      <div class="contact-details">
+        <h3><i class="fa fa-envelope"></i> Email</h3>
+        <p>support@rayensoft.com</p>
+      </div>
+      <hr />
+
+      <div class="contact-details">
+        <h3><i class="fa fa-phone"></i> Lets Talk</h3>
+        <p>+216 72 677 857</p>
+      </div>
+      <hr />
+
+      <div class="social-link-container">
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <form class="form" method="POST" action ="contactus.php" >
+      <?php 
+                        if(array_key_exists("msg",$_GET)){
+                    ?>
+                        <div class="alert alert-danger">
+                            <?= $_GET['msg']; ?>
+                        </div>
+                    <?php } ?>
+                    <div class="form-group">
+          <input type="text" name="fullname" class="input-field form-input" placeholder="Full name" >
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" class="input-field form-input" placeholder="Email" >
+        </div>
+        <div class="form-group">
+          <input type="text" name="subject" class="input-field form-input" placeholder="Subject" >
+        </div>
+        <div class="form-group">
+          <input type="date" name="date" id="date" class="input-field form-input">
+        </div>
+        <div class="form-group">
+          <textarea name="message" rows="5" class="input-field form-input" placeholder="Message"></textarea>
+        </div>
+        <p id="dateError" style="color: red;"></p>
+
+        <div class="form-group">
+          <input type="submit" onclick=" showMessageAlert()" name="submit" class="input-field submit-btn" value="Submit" >
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+<?php
+if (isset($_SESSION['email_sent_success']) && $_SESSION['email_sent_success']) {
+    echo ' <br><br> <br> <br><div class="alert alert-success">Message sent successfully!</div>';
+    $_SESSION['email_sent_success'] = false;
+}
+?>
+<script>
+    TweenMax.staggerFrom(".form-group", 1, {
+  delay: 0.2,
+  opacity: 0,
+  y: 20,
+  ease: Expo.easeInOut
+}, 0.2);
+
+TweenMax.staggerFrom(".contact-info-container > *", 1, {
+  delay: 0,
+  opacity: 0,
+  y: 20,
+  ease: Expo.easeInOut
+}, 0.1);
+
+</script>
+<script>
+  
+    document.addEventListener('DOMContentLoaded', function() {
+      var dateInput = document.getElementById('date');
+      dateInput.addEventListener('input', function() {
+        var inputDate = new Date(dateInput.value);
+        var currentDate = new Date();
+        if (inputDate < currentDate) {
+          //va realiser la date d'aujourdui par défaut
+          dateInput.value = currentDate.toISOString().split('T')[0];
+
+      }
+
+
+    })
+    });
+</script>
+<script src="./assets/sweetalert.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
